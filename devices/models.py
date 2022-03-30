@@ -33,6 +33,12 @@ class Device(models.Model):
 
     lock = models.DateTimeField(null=True)
 
+    def __str__(self):
+        return self.tag_id +"  "+ self.name
+    
+    class Meta:
+        verbose_name='Equipamento'
+        verbose_name_plural = 'Equipamentos'
 
 class ImageDevice(models.Model):
     image_name = models.CharField("Nome da imagem", max_length=150)
