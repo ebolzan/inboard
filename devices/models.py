@@ -39,5 +39,12 @@ class ImageDevice(models.Model):
     image_file = models.ImageField(blank=True, upload_to='cards')
     device = models.ForeignKey(Device, on_delete=models.CASCADE, default=1)
 
+    def __str__(self):
+        return self.image_file
+    
+    class Meta:
+        verbose_name='Imagem'
+        verbose_name_plural = 'Imagens'
+
 
 
