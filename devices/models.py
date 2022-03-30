@@ -1,5 +1,9 @@
 from django.db import models
 
+class ImageDevice(models.Model):
+    image_name = models.CharField("Nome da imagem", max_length=150)
+    image_file = models.ImageField(blank=True, upload_to='cards')
+
 # Create your models here.
 class Device(models.Model):
     tag_id = models.CharField("Identificação", max_length=150)
