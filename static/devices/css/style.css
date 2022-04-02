@@ -1,0 +1,9 @@
+.field-thumbnail:hover img
+{
+width: 100%;
+height:100%;
+  border: 5px solid red;
+transform: scale(1);
+       background-color: #e6f2ff;
+
+}
