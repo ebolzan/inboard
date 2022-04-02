@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 # Create your models here.
@@ -45,8 +46,18 @@ class ImageDevice(models.Model):
     image_file = models.ImageField(blank=True, upload_to='cards')
     device = models.ForeignKey(Device, on_delete=models.CASCADE, default=1)
 
+    def thumbnail(self):
+        if self.image_file:
+           # return u'<img src="%s" />' % (self.image_file.url)
+            return mark_safe('<img src="{0}" width="150" height="150" />'.format(self.image_file.url))
+        else:
+            return '(No image)'
+
+
+    thumbnail.short_description = 'Preview image'
+
     def __str__(self):
-        return self.image_file
+        return str(self.image_file)
     
     class Meta:
         verbose_name='Imagem'
