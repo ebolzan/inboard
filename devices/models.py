@@ -20,19 +20,20 @@ class Device(models.Model):
     observation = models.TextField("Observação", blank=True)
     model = models.CharField("Modelo", max_length=150, blank=True)
 
+
     STATUS = (
         (1, 'Novo'),
         (2, 'Pronto'),
         (3, 'Pendente'),
     )
-    state_item = models.PositiveSmallIntegerField(
+    state_item = models.PositiveSmallIntegerField("Situação do ativo",
       choices=STATUS,
       default=1,
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    lock = models.DateTimeField(null=True)
+    lock = models.DateTimeField("Bloqueado para edição", null=True)
 
     def __str__(self):
         return self.tag_id +"  "+ self.name
