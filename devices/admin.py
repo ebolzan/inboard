@@ -22,6 +22,7 @@ admin.site.register(ImageDevice)
 @admin.register(Device)
 class DeviceAdmin(admin.ModelAdmin):
     list_display = ('tag_id', 'name', 'type', 'region', 'local', 'team_owner', 'serial_number', 'asset_tag', 'shorDescription')
+    fieldsets = [('Identificação', {'fields': [ 'tag_id', 'name', 'type']}),('Localização', {'fields': ['region', 'local', 'team_owner', 'address']}), ('Informações', {'fields': [ 'description', 'serial_number', 'asset_tag', 'model', ]})]
     inlines = [ImageDeviceInstanceInline]
 
     def shorDescription(self, obj):
