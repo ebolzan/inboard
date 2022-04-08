@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Device, ImageDevice
+from .models import Device, ImageDevice, User
 
 
 class ImageDeviceInstanceInline(admin.TabularInline):
@@ -31,5 +31,4 @@ class DeviceAdmin(admin.ModelAdmin):
     shorDescription.short_description = 'Descrição'
 
 
-
-# Register your models here.
+admin.site.register(User)
