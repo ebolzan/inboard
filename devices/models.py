@@ -1,5 +1,18 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.contrib.auth.models import User
+
+
+class User(models.Model):
+    manager = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_managerUs = models.BooleanField("Gestor de US", default=True)
+
+    def __str__(self):
+        return self.manager.username
+
+    class Meta:
+        verbose_name = 'Gestor'
+        verbose_name_plural = 'Gestores'
 
 
 # Create your models here.
@@ -35,6 +48,7 @@ class Device(models.Model):
 
     lock = models.DateTimeField("Bloqueado para edição", null=True)
 
+
     def __str__(self):
         return self.tag_id +"  "+ self.name
     
@@ -63,6 +77,7 @@ class ImageDevice(models.Model):
     class Meta:
         verbose_name='Imagem'
         verbose_name_plural = 'Imagens'
+
 
 
 
