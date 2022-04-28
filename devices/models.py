@@ -10,16 +10,17 @@ class User(models.Model):
     def __str__(self):
         return self.manager.username
 
+    def __unicode__(self):
+        return self.manager.username
+
     class Meta:
         verbose_name = 'Gestor'
         verbose_name_plural = 'Gestores'
 
 
-# Create your models here.
 class Device(models.Model):
     tag_id = models.CharField("Identificação", max_length=150)
-    name  = models.CharField("Nome do ativo", max_length=150)
-    #image = models.CharField(max_length=100)
+    name = models.CharField("Nome do ativo", max_length=150)
     type = models.CharField("Tipo de equipamento",max_length=150)
     region = models.CharField("Regional", max_length=100)
     local = models.CharField("Unidade", max_length=150)
@@ -48,10 +49,11 @@ class Device(models.Model):
 
     lock = models.DateTimeField("Bloqueado para edição", null=True)
 
+    users = models.ManyToManyField(User, related_name='managers', blank=True, null=True, verbose_name='Gestores')
 
     def __str__(self):
         return self.tag_id +"  "+ self.name
-    
+
     class Meta:
         verbose_name='Equipamento'
         verbose_name_plural = 'Equipamentos'
@@ -79,5 +81,9 @@ class ImageDevice(models.Model):
         verbose_name_plural = 'Imagens'
 
 
+class DevicesProxy(Device.users.through):
+    class Meta:
+        proxy = True
 
-
+    def __str__(self):
+        return str(self.device.name+'-'+self.device.local)
