@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'devices.apps.DevicesConfig',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -75,9 +76,16 @@ WSGI_APPLICATION = 'inboard.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite2',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite2',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db',
+        'HOST': '127.0.0.1',
+        'PASSWORD': 'password',
+        'USER': 'user'
     }
 }
 
