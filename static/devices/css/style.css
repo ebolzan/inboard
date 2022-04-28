@@ -5,5 +5,14 @@ height:100%;
   border: 5px solid red;
 transform: scale(1);
        background-color: #e6f2ff;
-
 }
+#header{
+
+font-size: 30px;
+font-style: border;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+   color: red !import;
+}
+
