@@ -10,9 +10,9 @@ admin.site.site_header  =  "CARBOARD SYSTEM @"
 admin.site.site_title  =  "CARBOARD SYSTEM @"
 admin.site.index_title = "CadBoard HOME"
 
+
 class ImageDeviceInstanceInline(admin.TabularInline):
     model = ImageDevice
-
     readonly_fields = ('thumbnail', 'render_image',)
 
     def render_image(self, obj):
@@ -26,9 +26,6 @@ class ImageDeviceInstanceInline(admin.TabularInline):
         js = ('devices/js/imagelink.js', )
 
 
-
-
-
 admin.site.register(ImageDevice)
 
 
@@ -36,7 +33,7 @@ admin.site.register(ImageDevice)
 class DeviceAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('tag_id', 'name','type', 'region', 'local', 'team_owner', 'serial_number', 'asset_tag', 'shorDescription', 'state_item')
     list_per_page = 50
-    fieldsets = [('Identificação', {'fields': ['tag_id', 'name', 'type']}),('Localização', {'fields': ['region', 'local', 'team_owner','users', 'address']}), ('Informações', {'fields': ['observation','description', 'serial_number', 'asset_tag', 'model', ]})]
+    fieldsets = [('Identificação', {'fields': ['tag_id', 'name', 'type']}),('Localização', {'fields': ['region', 'local', 'team_owner','users', 'address']}), ('Informações', {'fields': ['observation','description', 'serial_number', 'asset_tag', 'model','state_item' ]})]
     inlines = [ImageDeviceInstanceInline]
 
     def shorDescription(self, obj):
